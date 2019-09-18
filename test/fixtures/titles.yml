@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
   description: MyString
   kind: MyString
   content: MyString
@@ -9,7 +8,6 @@ one:
   game: one
 
 two:
-  title: MyString
   description: MyString
   kind: MyString
   content: MyString
