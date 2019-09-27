@@ -4,11 +4,11 @@ class GamesController < ApplicationController
         render json: games
       end
 
-    # def user_games
-    #     user = User.find(params[:id])
-    #     games = user.games.all
-    #     render json: games 
-    # end
+    def user_games
+        user = User.find(params[:id])
+        games = user.games.all
+        render json: games 
+    end
     
     def all_games_published
         games = Game.all.select{|game| game.published == true}
@@ -24,6 +24,17 @@ class GamesController < ApplicationController
     def show
         game = Game.find(params[:id])
         render json: game
+    end
+    
+    def game_element_length
+        game_element_length = Game.find(params[:id]).elements.length
+        render json: game_element_length
+    end
+    
+    def update
+        game = Game.find(params[:id])
+        game.update(game_params)
+        render json: game
     end 
 
     # def destroy
@@ -32,32 +43,10 @@ class GamesController < ApplicationController
     #     render json: game
     # end
 
-    # def publish 
-    #     game = Game.find(params[:id])
-    #     if game.published = true 
-    #         game.published = false
-    #     else 
-    #         game.published = true 
-    #     end
-    #     render json: game
-    # end 
-      
-    # def create
-    #     game = Game.create(
-    #         title: (params[:name])
-    #         description: (params[:description])
-    #         published = false 
-    #     )
-    #     render json: game 
-    # end
-    
-    # def update
-    #     game = Game.find(params[:id])
-    #     game.update      
-    #     name: params([:name])
-    #     content: params([:content])
-    #     render json: game
-    # end
+    def create
+        game = Game.create(game_params)
+        render json: game 
+    end
 
     # def random
     #     sr = SimpleRandom.new
@@ -69,4 +58,11 @@ class GamesController < ApplicationController
     #      end
     #     render json: random_cards
     # end
+
+    private 
+
+    def game_params
+        params.require(:game).permit(:title, :description, :published, :user_id)
+    end
+    
 end
