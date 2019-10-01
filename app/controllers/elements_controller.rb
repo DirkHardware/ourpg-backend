@@ -26,6 +26,8 @@ class ElementsController < ApplicationController
     def destroy 
         element = Element.find(params[:id])
         element.destroy
+
+        render json: element
     end
     
     private 

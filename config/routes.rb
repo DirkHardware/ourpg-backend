@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   get 'games/:id/elements', to: 'elements#index'
   patch 'elements/:id/update', to: 'elements#update'
   post 'elements', to: 'elements#create'
-  # delete 'elements', to: 'elements#destroy'
+  delete 'elements/:id', to: 'elements#destroy'
 end 
